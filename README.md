@@ -75,7 +75,7 @@ Visit http://localhost:3000
  Admin dashboard for lesson contributions
 
 
- ##Contributing
+ ## Contributing
 Contributions are welcome!
 Fork this repo
 Create a feature branch: git checkout -b feature/your-feature-name
@@ -83,7 +83,7 @@ Commit your changes: git commit -m 'Add your feature'
 Push to your branch: git push origin feature/your-feature-name
 Create a Pull Request
 
-##Acknowledgements
+## Acknowledgements
 Inspired by India's cultural and linguistic diversity
 Built with love for learners across India
 Thanks to all open-source contributors and tech communities
