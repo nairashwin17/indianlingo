@@ -1,73 +1,88 @@
-# Welcome to your Lovable project
+# 🇮🇳 IndianLingo
 
-## Project info
+**IndianLingo** is a regional language learning platform aimed at helping users learn to speak Indian languages with confidence. Designed with a mission to connect people across India, IndianLingo promotes cultural diversity through structured lessons and real-world language use cases.
 
-**URL**: https://lovable.dev/projects/376c6ec0-48ce-46a1-bcc2-9977b55ba906
+## 🌍 Vision
 
-## How can I edit this code?
+“To connect India through languages.”
 
-There are several ways of editing your application.
+We aim to break communication barriers by making it easy and enjoyable to learn Indian regional languages. Our initial focus is Marathi for users who know Hindi and English. More languages will be added as the platform evolves.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/376c6ec0-48ce-46a1-bcc2-9977b55ba906) and start prompting.
+## 🚀 Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- ✅ Beginner-level structured lessons (Marathi)
+- 🗣️ Audio support for pronunciation (planned with Google Cloud STT)
+- 📚 Conversational examples and real-life dialogues
+- 🎯 Practice exercises, quizzes, and flashcards (in progress)
+- 📱 Mobile-first and progressive design with Next.js
+- 🛠️ Admin dashboard (coming soon)
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🧑‍💻 Tech Stack
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+| Layer        | Tech Stack            |
+|--------------|------------------------|
+| Frontend     | React, Next.js, Tailwind CSS |
+| Backend (planned) | Node.js, Express.js, MongoDB |
+| Cloud Services | Google Cloud (Speech-to-Text) |
+| Hosting      | Vercel |
+| Version Control | Git & GitHub |
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 📂 Project Structure
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```bash
+indianlingo/
+├── public/                  # Static assets
+├── src/
+│   ├── components/          # Reusable UI components
+│   ├── pages/               # Route-based pages
+│   ├── data/                # JSON lesson content
+│   ├── utils/               # Helper functions
+│   └── styles/              # Custom CSS or Tailwind configs
+├── .env                     # Environment variables (not committed)
+├── next.config.js           # Next.js config
+└── README.md                # Project overview
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Clone the repository
+git clone https://github.com/nairashwin17/indianlingo.git
+cd indianlingo
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+
+##Install dependencies
+npm install
+
+
+##Start the development server
 npm run dev
-```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+##Open in your browser
+Visit http://localhost:3000
 
-**Use GitHub Codespaces**
+## Roadmap
+ Beginner lessons for Marathi
+ Intermediate and Advanced lessons
+ Audio pronunciation support (Google STT)
+ Practice mode with quizzes
+ Support for more Indian languages (Tamil, Telugu, Kannada, etc.)
+ User login and progress tracking
+ Admin dashboard for lesson contributions
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+ ##Contributing
+Contributions are welcome!
+Fork this repo
+Create a feature branch: git checkout -b feature/your-feature-name
+Commit your changes: git commit -m 'Add your feature'
+Push to your branch: git push origin feature/your-feature-name
+Create a Pull Request
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/376c6ec0-48ce-46a1-bcc2-9977b55ba906) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+##Acknowledgements
+Inspired by India's cultural and linguistic diversity
+Built with love for learners across India
+Thanks to all open-source contributors and tech communities
