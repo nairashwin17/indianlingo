@@ -47,6 +47,7 @@ indianlingo/
 ├── .env                     # Environment variables (not committed)
 ├── next.config.js           # Next.js config
 └── README.md                # Project overview
+```
 
 ## Clone the repository
 git clone https://github.com/nairashwin17/indianlingo.git
