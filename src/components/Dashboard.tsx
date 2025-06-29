@@ -16,10 +16,10 @@ interface DashboardProps {
 
 export default function Dashboard({ knownLanguage, targetLanguage, onStartLesson, onBackToLanguages }: DashboardProps) {
   const [userProgress] = useState({
-    totalXP: 1250,
-    currentLevel: 3,
-    lessonsCompleted: 2,
-    currentStreak: 7,
+    totalXP: 0,
+    currentLevel: 1,
+    lessonsCompleted: 0,
+    currentStreak: 0,
     todayGoalMet: false
   });
 

@@ -13,6 +13,7 @@ import { Volume2, ArrowRight, BookOpen, Brain, Award } from 'lucide-react';
 interface QuizGameProps {
   lessonNumber: number;
   knownLanguage: string;
+  targetLanguage: string;
   onLessonComplete: () => void;
   onBackToDashboard: () => void;
 }
@@ -30,7 +31,7 @@ interface Question {
   explanation?: string;
 }
 
-export default function QuizGame({ lessonNumber, knownLanguage, onLessonComplete, onBackToDashboard }: QuizGameProps) {
+export default function QuizGame({ lessonNumber, knownLanguage, targetLanguage, onLessonComplete, onBackToDashboard }: QuizGameProps) {
   const { toast } = useToast();
   const [gamePhase, setGamePhase] = useState<GamePhase>('learning');
   const [learningPhraseIndex, setLearningPhraseIndex] = useState(0);
@@ -110,7 +111,7 @@ export default function QuizGame({ lessonNumber, knownLanguage, onLessonComplete
             id: phrase.id,
             type,
             phrase,
-            question: `Translate to Marathi: "${knownLanguage === 'hi' ? phrase.hindi : phrase.english}"`,
+            question: `Translate to ${targetLanguage}: "${phrase[knownLanguage]}`,
             correctAnswer: phrase.marathi
           });
           break;
@@ -133,20 +134,40 @@ export default function QuizGame({ lessonNumber, knownLanguage, onLessonComplete
     return options.sort(() => Math.random() - 0.5);
   };
 
-  const speakPhrase = (text: string) => {
-    if ('speechSynthesis' in window) {
-      speechSynthesis.cancel();
+  //All Language Code
+  const languageCodeMap: Record<string, string> = {
+    marathi: 'mr-IN',
+    hindi: 'hi-IN',
+    english: 'en-IN',
+    gujarati: 'gu-IN',
+    tamil: 'ta-IN',
+    telugu: 'te-IN',
+    bengali: 'bn-IN',
+    kannada: 'kn-IN',
+    malayalam: 'ml-IN',
+  };
+
+  const speakPhrase = (text: string, langKey: string) => {
+    if (!text || typeof window === "undefined") return;
+  
+    const synth = window.speechSynthesis;
+    synth.cancel(); // Stop any current speech
+
+    const langCode = languageCodeMap[langKey] || 'en-IN';
+  
+    setTimeout(() => {
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'mr-IN';
-      utterance.rate = 0.8;
-      speechSynthesis.speak(utterance);
-    }
+      utterance.lang = langCode;
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+      synth.speak(utterance);
+    }, 250); // Give it a slight delay to prevent instant cancellation
   };
 
   const handlePhraseMemorized = () => {
     if (!lesson) return;
     
-    const currentPhrase = lesson.phrases[learningPhraseIndex];
+    const currentPhrase : Phrase = lesson.phrases[learningPhraseIndex];
     setMasteredPhrases(prev => new Set([...prev, currentPhrase.id]));
     
     if (learningPhraseIndex < lesson.phrases.length - 1) {
@@ -225,7 +246,9 @@ export default function QuizGame({ lessonNumber, knownLanguage, onLessonComplete
 
   // Learning Phase
   if (gamePhase === 'learning') {
-    const currentPhrase = lesson.phrases[learningPhraseIndex];
+    const currentPhrase : Phrase= lesson.phrases[learningPhraseIndex];
+    console.log(targetLanguage);
+    
     const progress = ((learningPhraseIndex + 1) / lesson.phrases.length) * 100;
 
     return (
@@ -235,9 +258,8 @@ export default function QuizGame({ lessonNumber, knownLanguage, onLessonComplete
           <div className="text-center mb-8">
             <div className="relative inline-block">
               <img 
-                src="/lovable-uploads/a6f99ae0-5b5a-4967-9fdb-6c0b15cfb26e.png" 
-                alt="Lingo Mascot" 
-                className="w-32 h-32 mx-auto animate-bounce-gentle hover:scale-110 transition-transform duration-300"
+                src="/assets/indianlingo.svg" 
+                alt="Indian Lingo" 
               />
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold animate-pulse">
                 Let's Learn!
@@ -282,11 +304,11 @@ export default function QuizGame({ lessonNumber, knownLanguage, onLessonComplete
               {/* Marathi Phrase */}
               <div className="text-center space-y-4">
                 <div className="p-6 bg-primary/10 rounded-lg hover:bg-primary/15 transition-colors duration-300">
-                  <h2 className="text-4xl font-bold text-primary mb-4">{currentPhrase.marathi}</h2>
+                  <h2 className="text-4xl font-bold text-primary mb-4">{currentPhrase[targetLanguage]}</h2>
                   <Button
                     variant="outline"
                     size="lg"
-                    onClick={() => speakPhrase(currentPhrase.marathi)}
+                    onClick={() => speakPhrase(currentPhrase[targetLanguage],targetLanguage)}
                     className="flex items-center gap-2 hover:scale-105 transition-transform"
                   >
                     <Volume2 className="w-5 h-5" />
@@ -323,7 +345,7 @@ export default function QuizGame({ lessonNumber, knownLanguage, onLessonComplete
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button
                   variant="outline"
-                  onClick={() => speakPhrase(currentPhrase.marathi)}
+                  onClick={() => speakPhrase(currentPhrase[targetLanguage],targetLanguage)}
                   className="flex items-center gap-2 hover:scale-105 transition-transform"
                 >
                   <Volume2 className="w-4 h-4" />

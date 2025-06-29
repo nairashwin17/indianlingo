@@ -52,6 +52,7 @@ export default function Index() {
         <QuizGame
           lessonNumber={currentLesson}
           knownLanguage={selectedLanguages.known}
+          targetLanguage={selectedLanguages.target}
           onLessonComplete={handleLessonComplete}
           onBackToDashboard={handleBackToDashboard}
         />
